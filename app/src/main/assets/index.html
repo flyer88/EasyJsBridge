@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>JQuery JSONView</title>
+
+    <!-- bootstrap Latest compiled and minified JavaScript -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <script type="text/javascript">
+        function callJava() {
+            window.nativeUtils.LogHandler.log("123")
+        }
+
+        function callJavaWithResult() {
+            window.nativeUtils.AppInfoHandler(function(appInfo){
+                console.log("version:" + appInfo);
+            },"args from js")
+        }
+
+        function callJavaWithCallback() {
+            window.dove.ObserveHandler(function(json){
+                console.log("observe" + JSON.stringify(json));
+            })
+        }
+    </script>
+</head>
+<body>
+    <p><a class="btn btn-primary btn-lg" onclick="callJava()" href="#" role="button">js 调用 java 无回调</a></p>
+    <p><a class="btn btn-primary btn-lg" onclick="callJavaWithResult()" href="#" role="button">js 调用 java 有结果（通过回调）</a></p>
+    <p><a class="btn btn-primary btn-lg" onclick="callJavaWithCallback()" href="#" role="button">js 调用 java 无结果（等待 native 唤醒）</a></p>
+</body>
+</html>
+
+
+
